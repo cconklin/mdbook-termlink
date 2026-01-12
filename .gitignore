@@ -22,6 +22,9 @@ target
 
 .DS_Store
 
+# E2E test build output
+!/tests/fixtures/book/
+
 # exlcude CLAUDE.md
 /CLAUDE.md
 

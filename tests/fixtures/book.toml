@@ -7,3 +7,8 @@ glossary-path = "reference/glossary.md"
 link-first-only = true
 css-class = "glossary-term"
 case-sensitive = false
+exclude-pages = ["excluded.md"]
+
+[preprocessor.termlink.aliases]
+API = ["apis", "api endpoints"]
+REST = ["RESTful"]

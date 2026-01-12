@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2026-01-12
+
+### Added
+
+- **End-to-End Testing**: Comprehensive e2e test suite that runs real `mdbook build` with the preprocessor
+- 11 e2e tests covering all major features:
+  - Basic term linking
+  - Tooltip preview (title attributes)
+  - Code block exclusion
+  - Inline code exclusion
+  - Link-first-only behavior
+  - Nested chapter relative paths
+  - Heading exclusion
+  - CLI `supports html` command
+  - CLI `supports pdf` rejection
+  - Exclude pages functionality
+  - Alias linking
+- Cross-platform CI testing (Linux, macOS, Windows) with mdBook 0.5.2
+
+### Changed
+
+- Test suite now includes 52 tests total (35 unit + 11 e2e + 6 integration)
+
 ## [0.0.3] - 2026-01-12
 
 ### Added
@@ -43,7 +66,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `css-class`: CSS class for term links (default: `glossary-term`)
 - `case-sensitive`: Case-sensitive matching (default: `false`)
 
-[Unreleased]: https://github.com/rubentalstra/mdbook-termlink/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/rubentalstra/mdbook-termlink/compare/v0.0.4...HEAD
+
+[0.0.4]: https://github.com/rubentalstra/mdbook-termlink/compare/v0.0.3...v0.0.4
 
 [0.0.3]: https://github.com/rubentalstra/mdbook-termlink/compare/v0.0.1...v0.0.3
 
