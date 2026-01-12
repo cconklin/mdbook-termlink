@@ -17,13 +17,13 @@ fn preprocessor_binary() -> PathBuf {
     let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     path.push("target");
 
-    // Check release first, then debug
-    let release_path = path.join("release").join(binary_name());
-    if release_path.exists() {
-        return release_path;
+    // Check debug first (matches default cargo build/test), then release
+    let debug_path = path.join("debug").join(binary_name());
+    if debug_path.exists() {
+        return debug_path;
     }
 
-    path.join("debug").join(binary_name())
+    path.join("release").join(binary_name())
 }
 
 fn binary_name() -> &'static str {
