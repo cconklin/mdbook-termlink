@@ -92,8 +92,7 @@ fn get_book_dir() -> &'static PathBuf {
 fn read_html(relative_path: &str) -> String {
     let book_dir = get_book_dir();
     let path = book_dir.join(relative_path);
-    fs::read_to_string(&path)
-        .unwrap_or_else(|e| panic!("Failed to read {}: {e}", path.display()))
+    fs::read_to_string(&path).unwrap_or_else(|e| panic!("Failed to read {}: {e}", path.display()))
 }
 
 // =============================================================================
