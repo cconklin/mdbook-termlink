@@ -5,7 +5,8 @@
 [![Documentation](https://docs.rs/mdbook-termlink/badge.svg)](https://docs.rs/mdbook-termlink)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-An [mdBook](https://github.com/rust-lang/mdBook) preprocessor that automatically links glossary terms throughout your documentation.
+An [mdBook](https://github.com/rust-lang/mdBook) preprocessor that automatically links glossary terms throughout your
+documentation.
 
 ## Features
 
@@ -87,12 +88,12 @@ case-sensitive = false
 
 ### Configuration Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `glossary-path` | String | `"reference/glossary.md"` | Path to glossary file relative to `src/` |
-| `link-first-only` | Boolean | `true` | Only link first occurrence per page |
-| `css-class` | String | `"glossary-term"` | CSS class for term links |
-| `case-sensitive` | Boolean | `false` | Case-sensitive term matching |
+| Option            | Type    | Default                   | Description                              |
+|-------------------|---------|---------------------------|------------------------------------------|
+| `glossary-path`   | String  | `"reference/glossary.md"` | Path to glossary file relative to `src/` |
+| `link-first-only` | Boolean | `true`                    | Only link first occurrence per page      |
+| `css-class`       | String  | `"glossary-term"`         | CSS class for term links                 |
+| `case-sensitive`  | Boolean | `false`                   | Case-sensitive term matching             |
 
 ## Styling
 
@@ -118,17 +119,18 @@ Example `custom.css`:
 
 ## How It Works
 
-1. **Glossary Parsing**: The preprocessor parses your glossary file looking for definition lists (term followed by `: definition`)
+1. **Glossary Parsing**: The preprocessor parses your glossary file looking for definition lists (term followed by
+   `: definition`)
 
 2. **Term Extraction**: Each term is extracted with:
-   - Full name (e.g., "API (Application Programming Interface)")
-   - Anchor (e.g., "api-application-programming-interface")
-   - Short form if present (e.g., "API")
+    - Full name (e.g., "API (Application Programming Interface)")
+    - Anchor (e.g., "api-application-programming-interface")
+    - Short form if present (e.g., "API")
 
 3. **Content Processing**: For each chapter (except the glossary):
-   - Skips code blocks, inline code, existing links, headings, and images
-   - Matches terms using word boundaries to avoid partial matches
-   - Creates links to the glossary with the configured CSS class
+    - Skips code blocks, inline code, existing links, headings, and images
+    - Matches terms using word boundaries to avoid partial matches
+    - Creates links to the glossary with the configured CSS class
 
 4. **Link Generation**: Terms are replaced with HTML links:
    ```html
@@ -148,7 +150,7 @@ The preprocessor is smart about where it adds links. It will **not** link terms 
 ## Requirements
 
 - mdBook 0.5.0 or later
-- Rust 1.85.0 or later (for building from source)
+- Rust 1.88.0 or later (for building from source)
 
 ## Development
 
