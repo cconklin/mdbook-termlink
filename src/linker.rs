@@ -34,6 +34,7 @@ pub fn add_term_links(
     options.insert(Options::ENABLE_DEFINITION_LIST);
     options.insert(Options::ENABLE_TABLES);
     options.insert(Options::ENABLE_FOOTNOTES);
+    options.insert(Options::ENABLE_GFM);
     options.insert(Options::ENABLE_STRIKETHROUGH);
     options.insert(Options::ENABLE_TASKLISTS);
 

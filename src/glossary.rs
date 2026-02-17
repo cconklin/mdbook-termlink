@@ -138,6 +138,7 @@ fn parse_definition_lists(content: &str) -> Vec<Term> {
     // Enable definition list extension
     let mut options = Options::empty();
     options.insert(Options::ENABLE_DEFINITION_LIST);
+    options.insert(Options::ENABLE_GFM);
 
     let parser = Parser::new_ext(content, options);
 
