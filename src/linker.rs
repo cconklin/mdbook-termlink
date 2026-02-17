@@ -7,6 +7,7 @@ use anyhow::Result;
 use pulldown_cmark::{CowStr, Event, Options, Parser, Tag, TagEnd};
 use pulldown_cmark_to_cmark::cmark;
 use regex::{Regex, RegexBuilder};
+use html_escape::{encode_text, encode_quoted_attribute};
 
 use crate::config::Config;
 use crate::glossary::Term;
@@ -156,7 +157,7 @@ fn replace_terms_to_events(
             let matched_text = &text[mat.start()..mat.end()];
             let title_attr = term
                 .definition()
-                .map(|d| format!(r#" title="{}""#, html_escape(d)))
+                .map(|d| format!(r#" title="{}""#, encode_quoted_attribute(d)))
                 .unwrap_or_default();
             let link = format!(
                 r#"<a href="{}#{}"{} class="{}">{}</a>"#,
@@ -164,7 +165,7 @@ fn replace_terms_to_events(
                 term.anchor(),
                 title_attr,
                 config.css_class(),
-                html_escape(matched_text),
+                encode_text(matched_text),
             );
 
             matches.push((mat.start(), mat.end(), link));
@@ -237,14 +238,6 @@ pub fn calculate_relative_path(from_chapter: &Path, to_glossary: &Path) -> Strin
     format!("{}{}", prefix, to_glossary.display())
 }
 
-/// Escapes HTML special characters.
-fn html_escape(text: &str) -> String {
-    text.replace('&', "&amp;")
-        .replace('<', "&lt;")
-        .replace('>', "&gt;")
-        .replace('"', "&quot;")
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -315,14 +308,6 @@ mod tests {
 
         assert!(regex.is_match("Use the API"));
         assert!(regex.is_match("API (Application Programming Interface) is"));
-    }
-
-    #[test]
-    fn test_html_escape() {
-        assert_eq!(html_escape("a < b"), "a &lt; b");
-        assert_eq!(html_escape("a & b"), "a &amp; b");
-        assert_eq!(html_escape("<script>"), "&lt;script&gt;");
-        assert_eq!(html_escape(r#"say "hello""#), "say &quot;hello&quot;");
     }
 
     /// Helper to convert events to a concatenated string for test assertions
