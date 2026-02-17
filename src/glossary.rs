@@ -216,6 +216,16 @@ fn parse_definition_lists(content: &str) -> Vec<Term> {
                     current_definition_text.push_str(&text);
                 }
             }
+            Event::End(TagEnd::Paragraph) | Event::HardBreak => {
+                if in_definition {
+                    current_definition_text.push_str("\n");
+                }
+            }
+            Event::SoftBreak => {
+                if in_definition {
+                    current_definition_text.push_str(" ");
+                }
+            }
             _ => {}
         }
     }
